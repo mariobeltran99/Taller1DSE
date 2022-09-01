@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BG171969Taller1.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Empleados</h2>
+
+<p>
+    @Html.ActionLink("Registrar Empleado", "Create")
+</p>
+@using (Html.BeginForm("Index", "Employees", FormMethod.Get))
+{
+<p>
+    Apellidos: @Html.TextBox("searchSurname")
+    Cargo:@Html.DropDownList("searchPosition", "Todos los cargos")
+    Salario Máximo: @Html.TextBox("searchSalaryBaseMax")
+    Salario Mínimo: @Html.TextBox("searchSalaryBaseMin")
+    <br />
+    <br />
+    <input type="submit" value="Buscar" />
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateBirthday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salaryBase)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateBirthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salaryBase)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
